@@ -11,16 +11,20 @@ namespace TennisKata
         [TestMethod]
         public void Love_All()
         {
-            var score = _tennis.Score();
-            Assert.AreEqual("Love_All", score);
+            ScoreShouldBe("Love_All");
         }
 
         [TestMethod]
         public void Thirty_All()
         {
             _tennis.firstplayerscoretime++;
+            ScoreShouldBe("Thirty_All");
+        }
+
+        private void ScoreShouldBe(string expectedScore)
+        {
             var score = _tennis.Score();
-            Assert.AreEqual("Thirty_All", score);
+            Assert.AreEqual(expectedScore, score);
         }
     }
 }
