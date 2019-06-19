@@ -8,6 +8,10 @@
 
         public string Score()
         {
+            if (_firstPlayerScoreTime == 1 && _secondPlayerScoreTime == 1)
+            {
+                return "Fifteen_All";
+            }
             if (_firstPlayerScoreTime == 1)
             {
                 return "Fifteen_Love";
@@ -20,16 +24,25 @@
             {
                 return "Forty_Love";
             }
-            if (_firstPlayerScoreTime == 1 && _secondPlayerScoreTime == 1)
-            {
-                return "Fifteen_All";
-            }
             return "Love_All";
         }
 
-        public void FirstPlayerScored()
+        public void PlayerScored(string person, int scoreTime)
         {
-            _firstPlayerScoreTime++;
+            if (person == "first")
+            {
+                for (int i = 0; i < scoreTime; i++)
+                {
+                    _firstPlayerScoreTime++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < scoreTime; i++)
+                {
+                    _secondPlayerScoreTime++;
+                }
+            }
         }
     }
 }
