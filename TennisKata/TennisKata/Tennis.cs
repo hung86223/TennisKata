@@ -3,23 +3,33 @@
     public class Tennis
 
     {
-        public int firstplayerscoretime = 0;
+        private int _firstPlayerScoreTime;
+        private int _secondPlayerScoreTime;
 
         public string Score()
         {
-            if (firstplayerscoretime == 0)
+            if (_firstPlayerScoreTime == 1)
             {
-                return "Love_All";
+                return "Fifteen_Love";
             }
-            if (firstplayerscoretime == 1)
+            if (_firstPlayerScoreTime == 2)
+            {
+                return "Thirty_Love";
+            }
+            if (_firstPlayerScoreTime == 3)
+            {
+                return "Forty_Love";
+            }
+            if (_firstPlayerScoreTime == 1 && _secondPlayerScoreTime == 1)
             {
                 return "Fifteen_All";
             }
-            if (firstplayerscoretime == 2)
-            {
-                return "Thirty_All";
-            }
             return "Love_All";
+        }
+
+        public void FirstPlayerScored()
+        {
+            _firstPlayerScoreTime++;
         }
     }
 }

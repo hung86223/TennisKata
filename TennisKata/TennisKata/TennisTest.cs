@@ -15,18 +15,36 @@ namespace TennisKata
         }
 
         [TestMethod]
-        public void Thirty_All()
+        public void Fifteen_Love()
         {
-            _tennis.firstplayerscoretime++;
-            ScoreShouldBe("Fifteen_All");
+            _tennis.FirstPlayerScored();
+            ScoreShouldBe("Fifteen_Love");
         }
 
         [TestMethod]
-        public void Forty_All()
+        public void Thirty_Love()
         {
-            _tennis.firstplayerscoretime++;
-            _tennis.firstplayerscoretime++;
-            ScoreShouldBe("Thirty_All");
+            _tennis.FirstPlayerScored();
+            _tennis.FirstPlayerScored();
+            ScoreShouldBe("Thirty_Love");
+        }
+
+        [TestMethod]
+        public void Forty_Love()
+        {
+            _tennis.FirstPlayerScored();
+            _tennis.FirstPlayerScored();
+            _tennis.FirstPlayerScored();
+            ScoreShouldBe("Forty_Love");
+        }
+
+        [TestMethod]
+        public void Fifteen_All()
+        {
+            _tennis.FirstPlayerScored();
+            _tennis.FirstPlayerScored();
+            _tennis.FirstPlayerScored();
+            ScoreShouldBe("Fifteen_All");
         }
 
         private void ScoreShouldBe(string expectedScore)
