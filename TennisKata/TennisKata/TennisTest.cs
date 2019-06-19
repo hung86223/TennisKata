@@ -45,6 +45,15 @@ namespace TennisKata
             ScoreShouldBe("Fifteen_All");
         }
 
+        [TestMethod]
+        public void Thirty_Fifteen()
+        {
+            _tennis.PlayerScored("first", 2);
+            _tennis.PlayerScored("second", 1);
+
+            ScoreShouldBe("Thirty_Fifteen");
+        }
+
         private void ScoreShouldBe(string expectedScore)
         {
             var score = _tennis.Score();

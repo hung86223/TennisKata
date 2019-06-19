@@ -1,28 +1,20 @@
-﻿namespace TennisKata
+﻿using System.Collections.Generic;
+
+namespace TennisKata
 {
     public class Tennis
 
     {
         private int _firstPlayerScoreTime;
         private int _secondPlayerScoreTime;
+        private string _firstScore;
+        private string _secondScore;
 
         public string Score()
         {
-            if (_firstPlayerScoreTime == 1 && _secondPlayerScoreTime == 1)
+            if (_firstPlayerScoreTime > 0)
             {
-                return "Fifteen_All";
-            }
-            if (_firstPlayerScoreTime == 1)
-            {
-                return "Fifteen_Love";
-            }
-            if (_firstPlayerScoreTime == 2)
-            {
-                return "Thirty_Love";
-            }
-            if (_firstPlayerScoreTime == 3)
-            {
-                return "Forty_Love";
+                return _scoreLookUp[_firstPlayerScoreTime] + "_Love";
             }
             return "Love_All";
         }
@@ -44,5 +36,12 @@
                 }
             }
         }
+
+        private Dictionary<int, string> _scoreLookUp = new Dictionary<int, string>
+        {
+            {1,"Fifteen" },
+            {2,"Thirty"},
+            {3,"Forty"}
+        };
     }
 }
