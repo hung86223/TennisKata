@@ -18,6 +18,14 @@ namespace TennisKata
         public void Thirty_All()
         {
             _tennis.firstplayerscoretime++;
+            ScoreShouldBe("Fifteen_All");
+        }
+
+        [TestMethod]
+        public void Forty_All()
+        {
+            _tennis.firstplayerscoretime++;
+            _tennis.firstplayerscoretime++;
             ScoreShouldBe("Thirty_All");
         }
 

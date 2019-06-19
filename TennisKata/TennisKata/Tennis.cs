@@ -13,6 +13,10 @@
             }
             if (firstplayerscoretime == 1)
             {
+                return "Fifteen_All";
+            }
+            if (firstplayerscoretime == 2)
+            {
                 return "Thirty_All";
             }
             return "Love_All";
