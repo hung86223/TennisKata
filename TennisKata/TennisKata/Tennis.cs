@@ -7,20 +7,30 @@ namespace TennisKata
     {
         private int _firstPlayerScoreTime;
         private int _secondPlayerScoreTime;
-        private string _firstScore;
-        private string _secondScore;
 
         public string Score()
         {
-            if (_firstPlayerScoreTime > 0)
+            if (IsScoreDiff())
             {
-                return _scoreLookUp[_firstPlayerScoreTime] + "_Love";
+                return NormalScore();
             }
-            if (_secondPlayerScoreTime > 0)
-            {
-                return "Love_" + _scoreLookUp[_secondPlayerScoreTime];
-            }
-            return "Love_All";
+
+            return SameScore();
+        }
+
+        private string SameScore()
+        {
+            return _scoreLookUp[_firstPlayerScoreTime] + "_All";
+        }
+
+        private string NormalScore()
+        {
+            return _scoreLookUp[_firstPlayerScoreTime] + "_" + _scoreLookUp[_secondPlayerScoreTime];
+        }
+
+        private bool IsScoreDiff()
+        {
+            return _firstPlayerScoreTime != _secondPlayerScoreTime;
         }
 
         public void PlayerScored(string person, int scoreTime)
@@ -41,8 +51,9 @@ namespace TennisKata
             }
         }
 
-        private Dictionary<int, string> _scoreLookUp = new Dictionary<int, string>
+        private readonly Dictionary<int, string> _scoreLookUp = new Dictionary<int, string>
         {
+            {0,"Love" },
             {1,"Fifteen" },
             {2,"Thirty"},
             {3,"Forty"}
