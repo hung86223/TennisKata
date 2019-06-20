@@ -141,6 +141,24 @@ namespace TennisKata
             ScoreShouldBe("Huang_adv");
         }
 
+        [TestMethod]
+        public void FirstPlayer_win()
+        {
+            _tennis.PlayerScored("first", 5);
+            _tennis.PlayerScored("second", 3);
+
+            ScoreShouldBe("Ben_win");
+        }
+
+        [TestMethod]
+        public void SecondPlayer_win()
+        {
+            _tennis.PlayerScored("first", 3);
+            _tennis.PlayerScored("second", 5);
+
+            ScoreShouldBe("Huang_win");
+        }
+
         private void ScoreShouldBe(string expectedScore)
         {
             var score = _tennis.Score();

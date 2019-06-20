@@ -26,6 +26,19 @@ namespace TennisKata
                     {
                         return $"{WhichPlayerAdv()}_adv";
                     }
+
+                    if (Math.Abs(_firstPlayerScoreTime - _secondPlayerScoreTime) == 2)
+                    {
+                        if (_firstPlayerScoreTime > _secondPlayerScoreTime)
+                        {
+                            return _firstPlayerName + "_win";
+                        }
+
+                        if (_secondPlayerScoreTime > _firstPlayerScoreTime)
+                        {
+                            return _secondPlayerName + "_win";
+                        }
+                    }
                 }
 
                 return NormalScore();
