@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 
 namespace TennisKata
 {
@@ -20,11 +22,10 @@ namespace TennisKata
             {
                 if (_firstPlayerScoreTime > 3 || _secondPlayerScoreTime > 3)
                 {
-                    if (_firstPlayerScoreTime - _secondPlayerScoreTime == 1)
+                    if (Math.Abs(_firstPlayerScoreTime - _secondPlayerScoreTime) == 1)
                     {
-                        return $"{_firstPlayerName}_adv";
+                        return $"{WhichPlayerAdv()}_adv";
                     }
-                    return $"{_secondPlayerName}_adv";
                 }
 
                 return NormalScore();
@@ -36,6 +37,13 @@ namespace TennisKata
             }
 
             return SameScore();
+        }
+
+        private string WhichPlayerAdv()
+        {
+            return _firstPlayerScoreTime > _secondPlayerScoreTime
+                ? _firstPlayerName
+                : _secondPlayerName;
         }
 
         private static string Deuce()
