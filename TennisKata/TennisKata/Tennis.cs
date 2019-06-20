@@ -20,24 +20,15 @@ namespace TennisKata
         {
             if (IsScoreDiff())
             {
-                if (_firstPlayerScoreTime > 3 || _secondPlayerScoreTime > 3)
+                if (IsGamePoint())
                 {
-                    if (Math.Abs(_firstPlayerScoreTime - _secondPlayerScoreTime) == 1)
+                    if (IsAdv())
                     {
-                        return $"{WhichPlayerAdv()}_adv";
+                        return AdvScore();
                     }
-
-                    if (Math.Abs(_firstPlayerScoreTime - _secondPlayerScoreTime) == 2)
+                    else
                     {
-                        if (_firstPlayerScoreTime > _secondPlayerScoreTime)
-                        {
-                            return _firstPlayerName + "_win";
-                        }
-
-                        if (_secondPlayerScoreTime > _firstPlayerScoreTime)
-                        {
-                            return _secondPlayerName + "_win";
-                        }
+                        return WinScore();
                     }
                 }
 
@@ -52,7 +43,27 @@ namespace TennisKata
             return SameScore();
         }
 
-        private string WhichPlayerAdv()
+        private string WinScore()
+        {
+            return $"{WhichPlayerLead()}_win";
+        }
+
+        private string AdvScore()
+        {
+            return $"{WhichPlayerLead()}_adv";
+        }
+
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTime - _secondPlayerScoreTime) == 1;
+        }
+
+        private bool IsGamePoint()
+        {
+            return _firstPlayerScoreTime > 3 || _secondPlayerScoreTime > 3;
+        }
+
+        private string WhichPlayerLead()
         {
             return _firstPlayerScoreTime > _secondPlayerScoreTime
                 ? _firstPlayerName
@@ -111,6 +122,6 @@ namespace TennisKata
         };
 
         private readonly string _firstPlayerName;
-        private string _secondPlayerName;
+        private readonly string _secondPlayerName;
     }
 }
