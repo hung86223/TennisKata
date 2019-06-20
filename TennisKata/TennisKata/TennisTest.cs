@@ -6,7 +6,7 @@ namespace TennisKata
     [TestClass]
     public class TennisTest
     {
-        private readonly Tennis _tennis = new Tennis("Ben");
+        private readonly Tennis _tennis = new Tennis("Ben", "Huang");
 
         [TestMethod]
         public void Love_All()
@@ -130,6 +130,15 @@ namespace TennisKata
             _tennis.PlayerScored("second", 3);
 
             ScoreShouldBe("Ben_adv");
+        }
+
+        [TestMethod]
+        public void SecondPlayer_adv()
+        {
+            _tennis.PlayerScored("first", 3);
+            _tennis.PlayerScored("second", 4);
+
+            ScoreShouldBe("Huang_adv");
         }
 
         private void ScoreShouldBe(string expectedScore)

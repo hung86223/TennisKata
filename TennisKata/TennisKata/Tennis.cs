@@ -5,9 +5,10 @@ namespace TennisKata
     public class Tennis
 
     {
-        public Tennis(string firstPlayerName)
+        public Tennis(string firstPlayerName, string secondPlayerName)
         {
             _firstPlayerName = firstPlayerName;
+            _secondPlayerName = secondPlayerName;
         }
 
         private int _firstPlayerScoreTime;
@@ -17,12 +18,13 @@ namespace TennisKata
         {
             if (IsScoreDiff())
             {
-                if (_firstPlayerScoreTime > 3)
+                if (_firstPlayerScoreTime > 3 || _secondPlayerScoreTime > 3)
                 {
                     if (_firstPlayerScoreTime - _secondPlayerScoreTime == 1)
                     {
                         return $"{_firstPlayerName}_adv";
                     }
+                    return $"{_secondPlayerName}_adv";
                 }
 
                 return NormalScore();
@@ -87,6 +89,7 @@ namespace TennisKata
             {3,"Forty"}
         };
 
-        private string _firstPlayerName;
+        private readonly string _firstPlayerName;
+        private string _secondPlayerName;
     }
 }
